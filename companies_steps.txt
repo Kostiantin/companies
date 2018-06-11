@@ -1,0 +1,92 @@
+Companies:
+
+GENERAL REQUIREMENTS:
+
+
+    -- Basic Laravel Auth: ability to log in as administrator,
+    -- Use database seeds to create first user with email admin@admin.com and password 'password',
+    -- CRUD functionality (Create / Read / Update / Delete) for two menu items: Companies and Employees,
+    -- Companies DB table consists of these fields: Name (required), email, logo (minimum 100×100), website,
+    -- Employees DB table consists of these fields: First name (required), last name (required), Company (foreign key to Companies), email, phone
+    -- Use database migrations to create those schemas above,
+    -- Store companies logos in storage/app/public folder and make them accessible from public,
+    -- Use basic Laravel resource controllers with default methods – index, create, store etc,
+    -- Use Laravel's validation function, using Request classes,
+    -- Use Laravel's pagination for showing Companies/Employees list, 10 entries per page,
+    -- Use Laravel make:auth as default Bootstrap-based design theme, but remove ability to register.
+
+
+
+0) Basic Settings:
+     
+     a) Install local site,
+     b) Create database and connection in the .env file, then: php artisan cache:clear
+
+1) Create auth,
+    
+     1.1) php artisan make:migration add_is_admin_to_users_table --table=users
+
+     1.2) composer require doctrine/dbal
+      
+     1.3) php artisan make:seeder UsersTableSeeder     (and corrections inside)
+      
+     1.4) php artisan migrate --seed
+     
+       1.4.1) Sometimes this error comes while migrate:
+                 Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+                 
+                 FIX:
+                 edit your AppServiceProvider.php file and inside the boot method set a default string length:
+
+                  use Illuminate\Support\Facades\Schema;
+
+                  public function boot()
+                  {
+                      Schema::defaultStringLength(191);
+                  }
+          
+              if needed: php artisan migrate:fresh --seed
+
+2) Controllers: CompanyController and EmployeeController with --resource ,
+     
+     a) php artisan make:controller CompanyController --resource
+     b) php artisan make:controller EmployeeController --resource
+
+3) Models: companies, employees (with constraint of company id) and -m to create migrations
+      
+     a) php artisan make:model Company -m
+     b) php artisan make:model Employee -m
+     
+   Corrections inside migrations. Mass assignment inside models. Relations between them.
+
+4) Form to add new companies with logo. Storage for images (see lesson). Validation ,
+
+5) Form to add new employees, validation ,
+
+6) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
