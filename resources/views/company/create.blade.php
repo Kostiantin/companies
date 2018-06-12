@@ -10,16 +10,6 @@
 
     <h1 class="page-header">Create Company</h1>
 
-    @extends('layouts.master')
-
-@section('title')
-
-    <title>Create a Marketing Image</title>
-
-@endsection
-
-@section('content')
-
     <form class="form" role="form" method="POST"
           action="{{ url('/company/store') }}"
           enctype="multipart/form-data">
@@ -27,29 +17,21 @@
         {{ csrf_field() }}
 
 
-        <!-- is_active Form Input -->
+        <!-- name Form Input -->
 
 
 
-        <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
-            <label class="control-label">Is Active</label>
+            <label class="control-label">Name</label>
 
-
-            <select class="form-control" id="is_active" name="is_active">
-                <option value="{{old('is_active')}}">
-                    {{ ! is_null(old('is_active')) ?
-                    (old('is_active') == 1 ? 'Yes' :'No')
-                    : 'Please Choose One'}}</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select>
+            <input type="text" name="name" id="name" value="{{old('name')}}">
 
 
-            @if ($errors->has('is_active'))
+            @if ($errors->has('name'))
 
                 <span class="help-block">
-                <strong>{{ $errors->first('is_active') }}</strong>
+                <strong>{{ $errors->first('name') }}</strong>
                 </span>
 
             @endif
