@@ -1,0 +1,1 @@
+[Mon Jun 11 09:54:39.689622 2018] [log_config:error] [pid 2004:tid 1100] (OS 5)Отказано в доступе.  : AH00649: could not open transfer log file D:/Projects/companies/public/companies-access.log.

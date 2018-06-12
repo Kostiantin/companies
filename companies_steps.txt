@@ -59,11 +59,20 @@ GENERAL REQUIREMENTS:
      
    Corrections inside migrations. Mass assignment inside models. Relations between them.
 
-4) Form to add new companies with logo. Storage for images (see lesson). Validation ,
+4) NPM installed
 
-5) Form to add new employees, validation ,
+5) Added bootstrap quick start template 'Cover',
 
-6) 
+6) Index pages for Companies, Employees
+
+
+To be done:
+ -- Form to add new companies with logo. Storage for images (see lesson). Validation ,
+
+ -- Form to add new employees, validation ,
+
+ -- Middleware, only admin can create/remove/update companies and employees
+
 
 
 

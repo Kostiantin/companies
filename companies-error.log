@@ -1,1 +1,0 @@
-[Mon Jun 11 07:32:42.692222 2018] [autoindex:error] [pid 3804:tid 1612] [client 127.0.0.1:49797] AH01276: Cannot serve directory D:/Projects/companies/: No matching DirectoryIndex (index.php,index.html,index.htm,index.shtml) found, and server-generated directory index forbidden by Options directive
