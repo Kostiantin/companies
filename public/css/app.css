@@ -10602,3 +10602,7 @@ body {
   }
 }
 
+.content-tbl td {
+  vertical-align: middle;
+}
+

@@ -10,11 +10,11 @@
 
     <h1 class="page-header">Companies</h1>
 
-    Create a new company: <a class="btn btn-success" href="/companies/create">Create</a>
+    Create a new company: <a class="btn btn-success" href="{{route('company_create')}}">Create</a>
 
     @if($companies->count() > 0)
         <hr>
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed content-tbl">
 
             <thead>
             <th>Logo</th>
@@ -29,7 +29,7 @@
             @foreach($companies as $company)
 
                 <tr>
-                    <td>{{ $company->logo }}</td>
+                    <td><img class="thumbnail" style="max-height: 40px;" src="/storage/logo_images/{{$company->logo}}" alt=""/></td>
                     <td><a href="/company/{{ $company->id }}">{{ $company->name }}</a></td>
                     <td>{{ $company->email }}</td>
                     <td>{{ $company->website }}</td>

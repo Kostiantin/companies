@@ -25,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
@@ -36,7 +36,36 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|max:191',
+            'email' => 'required|email|max:191',
+            'website' => 'required|max:191',
+            'logo' => 'required|image|max:1999',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $fileNameWithExt = $request->file('logo')->getClientOriginalName();
+
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('logo')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename . '_' . time() . '_' . $extension;
+
+            $path = $request->file('logo')->storeAs('public/logo_images', $fileNameToStore);
+        }
+        else {
+            $fileNameToStore = 'http://via.placeholder.com/100x100';
+        }
+
+        $Company = new Company;
+        $Company->name = $request->input('name');
+        $Company->email = $request->input('email');
+        $Company->website = $request->input('website');
+        $Company->logo = $fileNameToStore;
+        $Company->save();
+
+        return redirect()->route('companies');
     }
 
     /**

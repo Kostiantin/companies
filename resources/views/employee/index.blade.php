@@ -10,6 +10,8 @@
 
     <h1 class="page-header">Employees</h1>
 
+    Create a new Employee: <a class="btn btn-success" href="{{route('employee_create')}}">Create</a>
+
     @if($employees->count() > 0)
 
         <table class="table table-striped table-bordered table-hover table-condensed">

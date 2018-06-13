@@ -11,13 +11,13 @@
     <h1 class="page-header">Create Company</h1>
 
     <form class="form" role="form" method="POST"
-          action="{{ url('/company/store') }}"
+          action="{{route('company_store')}}"
           enctype="multipart/form-data">
 
         {{ csrf_field() }}
 
 
-        <!-- name Form Input -->
+        <!-- Name -->
 
 
 
@@ -30,76 +30,82 @@
 
             @if ($errors->has('name'))
 
-                <span class="help-block">
+                <div class="help-block text-danger">
                 <strong>{{ $errors->first('name') }}</strong>
-                </span>
+                </div>
 
             @endif
 
         </div>
 
-        <!-- is_featured Form Input -->
+        <!-- Email -->
 
-        <div class="form-group{{ $errors->has('is_featured') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
-            <label class="control-label">Is Featured</label>
-
-
-            <select class="form-control" id="is_featured" name="is_featured">
-                <option value="{{old('is_featured')}}">
-                    {{ ! is_null(old('is_featured')) ?
-                    (old('is_featured') == 1 ? 'Yes' :'No')
-                    : 'Please Choose One'}}</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select>
+            <label class="control-label">Email</label>
 
 
-            @if ($errors->has('is_featured'))
+            <input type="text" name="email" id="email" value="{{old('email')}}">
 
-                <span class="help-block">
-                <strong>{{ $errors->first('is_featured') }}</strong>
-                </span>
+
+            @if ($errors->has('email'))
+
+                <div class="help-block text-danger">
+                <strong>{{ $errors->first('email') }}</strong>
+                </div>
 
             @endif
 
         </div>
 
-        <!-- image file Form Input -->
+        <!-- Logo -->
 
-        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
 
             <div class="form-group">
-                <label class="control-label">Primary Image
-                </label>
-
-                <input type="file" name="image" id="image">
+                <label class="control-label">Company Logo</label>
+                <input type="file" name="logo" id="logo">
             </div>
 
-            @if ($errors->has('image'))
+            @if ($errors->has('logo'))
 
-                <span class="help-block">
-                <strong>{{ $errors->first('image') }}</strong>
-                </span>
+                <div class="help-block text-danger">
+                    <strong>{{ $errors->first('logo') }}</strong>
+                </div>
 
             @endif
 
+        </div>
 
-            <div class="form-group">
+        <!-- Website -->
 
-                <button type="submit" class="btn btn-primary btn-lg">
+        <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
 
-                    Create
+            <label class="control-label">Website</label>
 
-                </button>
 
-            </div>
+            <input type="text" name="website" id="website" value="{{old('website')}}">
+
+
+            @if ($errors->has('website'))
+
+                <div class="help-block text-danger">
+                <strong>{{ $errors->first('website') }}</strong>
+                </div>
+
+            @endif
+
+        </div>
+
+        <div class="form-group">
+
+            <button type="submit" class="btn btn-primary btn-lg">
+                Create
+            </button>
+
         </div>
 
     </form>
 
 @endsection
 
-
-
-@endsection
