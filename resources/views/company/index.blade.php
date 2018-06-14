@@ -11,7 +11,6 @@
     <h1 class="page-header">Companies</h1>
 
     Create a new company: <a class="btn btn-success" href="{{route('company_create')}}">Create</a>
-
     @if($companies->count() > 0)
         <hr>
         <table class="table table-striped table-bordered table-hover table-condensed content-tbl">
@@ -22,6 +21,7 @@
             <th>Email</th>
             <th>Website</th>
             <th>Date Created</th>
+            <th>Actions</th>
             </thead>
 
             <tbody>
@@ -34,6 +34,7 @@
                     <td>{{ $company->email }}</td>
                     <td>{{ $company->website }}</td>
                     <td>{{ $company->created_at }}</td>
+                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm">Remove</a></td>
                 </tr>
 
             @endforeach

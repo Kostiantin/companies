@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -14,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::orderBy('created_at', 'DESC')->get();
         return view('company.index', compact('companies'));
     }
 
@@ -85,9 +86,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-        //
+        return view('company.edit', compact('company'));
     }
 
     /**
@@ -97,9 +98,38 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Company $company)
     {
-        //
+        $this->validate(request(),[
+            'name' => 'required|max:191',
+            'email' => 'required|email|max:191',
+            'website' => 'required|max:191',
+            'logo' => 'required|image|max:1999',
+        ]);
+
+        if (request()->hasFile('logo')) {
+            $fileNameWithExt = request()->file('logo')->getClientOriginalName();
+
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            $extension = request()->file('logo')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename . '_' . time() . '_' . $extension;
+
+            $path = request()->file('logo')->storeAs('public/logo_images', $fileNameToStore);
+        }
+        else {
+            $fileNameToStore = 'http://via.placeholder.com/100x100';
+        }
+
+        Storage::delete($company->logo);
+        $company->name = request()->input('name');
+        $company->email = request()->input('email');
+        $company->website = request()->input('website');
+        $company->logo = $fileNameToStore;
+        $company->save();
+
+        return redirect()->route('companies');
     }
 
     /**

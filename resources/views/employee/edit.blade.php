@@ -2,16 +2,15 @@
 
 @section('title')
 
-    <title>Create Employee</title>
+    <title>Edit Employee</title>
 
 @endsection
 
 @section('content')
 
-    <h1 class="page-header">Create Employee</h1>
+    <h1 class="page-header">Edit Employee</h1>
 
-    <form class="form" role="form" method="POST"
-          action="{{route('employee_store')}}">
+    <form class="form" role="form" method="POST" action="{{route('employee_update',$employee->id)}}">
 
         {{ csrf_field() }}
 
@@ -22,7 +21,7 @@
 
             <label class="control-label">First Name</label>
 
-            <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}">
+            <input type="text" name="first_name" id="first_name" value="{{$employee->first_name}}">
 
 
             @if ($errors->has('first_name'))
@@ -41,7 +40,7 @@
 
             <label class="control-label">Last Name</label>
 
-            <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}">
+            <input type="text" name="last_name" id="last_name" value="{{$employee->last_name}}">
 
 
             @if ($errors->has('last_name'))
@@ -61,7 +60,7 @@
             <label class="control-label">Email</label>
 
 
-            <input type="text" name="email" id="email" value="{{old('email')}}">
+            <input type="text" name="email" id="email" value="{{$employee->email}}">
 
 
             @if ($errors->has('email'))
@@ -81,7 +80,7 @@
             <label class="control-label">Phone</label>
 
 
-            <input type="text" name="phone" id="phone" value="{{old('phone')}}">
+            <input type="text" name="phone" id="phone" value="{{$employee->phone}}">
 
 
             @if ($errors->has('phone'))
@@ -105,7 +104,7 @@
 
                 <option value="">Please Choose One</option>
                 @foreach($companies as $company)
-                    <option value="{{$company->id}}">{{$company->name}}</option>
+                    <option value="{{$company->id}}" @if($company->id == $employee->company_id)selected @endif >{{$company->name}}</option>
                 @endforeach
 
             </select>
@@ -124,7 +123,7 @@
         <div class="form-group">
 
             <button type="submit" class="btn btn-primary btn-lg">
-                Create
+                Update
             </button>
 
         </div>

@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('company')->get();
+        $employees = Employee::with('company')->orderBy('created_at', 'DESC')->get();
 
         return view('employee.index', compact('employees'));
     }
@@ -76,9 +76,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
+        $companies = Company::all();
+        return view('employee.edit', compact('employee','companies'));
     }
 
     /**
@@ -88,9 +89,25 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Employee $employee)
     {
-        //
+
+        $this->validate(request(),[
+            'first_name' => 'required|max:191',
+            'last_name' => 'required|max:191',
+            'email' => 'required|email|max:191',
+            'company_id' => 'required|integer',
+            'phone' => 'required',
+        ]);
+
+        $employee->first_name = request()->input('first_name');
+        $employee->last_name = request()->input('last_name');
+        $employee->email = request()->input('email');
+        $employee->company_id = request()->input('company_id');
+        $employee->phone = request()->input('phone');
+
+        $employee->save();
+        return redirect()->route('employees');
     }
 
     /**
