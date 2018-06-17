@@ -113,7 +113,7 @@
 
             @if ($errors->has('company_id'))
 
-                <span class="help-block">
+                <span class="help-block text-danger">
                 <strong>{{ $errors->first('company_id') }}</strong>
                 </span>
 

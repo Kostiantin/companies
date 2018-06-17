@@ -122,7 +122,8 @@ class CompanyController extends Controller
             $fileNameToStore = 'http://via.placeholder.com/100x100';
         }
 
-        Storage::delete($company->logo);
+        Storage::delete('/public/logo_images/'.$company->logo);
+
         $company->name = request()->input('name');
         $company->email = request()->input('email');
         $company->website = request()->input('website');
@@ -138,8 +139,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        Storage::delete('/public/logo_images/'.$company->logo);
+        $company->delete();
+        return redirect()->route('companies');
     }
 }

@@ -34,7 +34,7 @@
                     <td>{{ $company->email }}</td>
                     <td>{{ $company->website }}</td>
                     <td>{{ $company->created_at }}</td>
-                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm">Remove</a></td>
+                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('All employees will also be deleted. Are you sure you want to delete?');">Remove</a></td>
                 </tr>
 
             @endforeach
@@ -42,7 +42,6 @@
             </tbody>
 
         </table>
-
     @else
 
         Sorry, no Companies

@@ -38,7 +38,7 @@
                     <td>{{ $employee->phone }}</td>
                     <td>{{ $employee->company->name }}</td>
                     <td>{{ $employee->created_at }}</td>
-                    <td><a href="{{route('employee_edit',$employee->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('employee_destroy',$employee->id)}}" class="btn btn-danger btn-sm">Remove</a></td>
+                    <td><a href="{{route('employee_edit',$employee->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('employee_destroy',$employee->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('Are you sure you want to delete?');">Remove</a></td>
                 </tr>
 
             @endforeach
@@ -46,7 +46,6 @@
             </tbody>
 
         </table>
-
     @else
 
         Sorry, no Employees
