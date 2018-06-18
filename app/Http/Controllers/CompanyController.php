@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Employee;
 
 class CompanyController extends Controller
 {
@@ -142,6 +143,10 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         Storage::delete('/public/logo_images/'.$company->logo);
+
+        // remove all employees
+        Employee::where('company_id', $company->id)->delete();
+
         $company->delete();
         return redirect()->route('companies');
     }
