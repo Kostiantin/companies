@@ -19,7 +19,7 @@ Route::get('/company/destroy/{company}', 'CompanyController@destroy')->name('com
 
 //employees
 Route::get('/employees', 'EmployeeController@index')->name('employees');
-Route::get('/employee/create', 'EmployeeController@create')->name('employee_create');
+Route::get('/employee/create/{company?}', 'EmployeeController@create')->name('employee_create');
 Route::post('/employee/store', 'EmployeeController@store')->name('employee_store');
 Route::get('/employee/edit/{employee}', 'EmployeeController@edit')->name('employee_edit');
 Route::post('/employee/update/{employee}', 'EmployeeController@update')->name('employee_update');

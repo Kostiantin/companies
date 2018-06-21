@@ -2,15 +2,15 @@
 
 @section('title')
 
-    <title>Create Employee</title>
+    <title>{{ __('Create Employee')}}</title>
 
 @endsection
 
 @section('content')
 
-    <h1 class="page-header">Create Employee</h1>
+    <h1 class="page-header">{{ __('Create Employee')}}</h1>
 
-    <form class="form" role="form" method="POST"
+    <form class="form" role="form" method="POST" class="form-horizontal"
           action="{{route('employee_store')}}">
 
         {{ csrf_field() }}
@@ -19,117 +19,128 @@
         <!--  First Name -->
 
         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-
-            <label class="control-label">First Name</label>
-
-            <input type="text" name="first_name" id="first_name" value="{{old('first_name')}}">
-
-
-            @if ($errors->has('first_name'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('first_name') }}</strong>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('First Name')}}</label>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="first_name" id="first_name" value="{{old('first_name')}}">
 
-            @endif
 
+                    @if ($errors->has('first_name'))
+
+                        <div class="help-block text-danger">
+                            <strong>{{ $errors->first('first_name') }}</strong>
+                        </div>
+
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!--  Last Name -->
 
         <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Last Name')}}</label>
 
-            <label class="control-label">Last Name</label>
-
-            <input type="text" name="last_name" id="last_name" value="{{old('last_name')}}">
-
-
-            @if ($errors->has('last_name'))
-
-                <div class="help-block text-danger">
-                    <strong>{{ $errors->first('last_name') }}</strong>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="last_name" id="last_name" value="{{old('last_name')}}">
+                    @if ($errors->has('last_name'))
 
-            @endif
+                        <div class="help-block text-danger">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </div>
 
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Email -->
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Email')}}</label>
 
-            <label class="control-label">Email</label>
-
-
-            <input type="text" name="email" id="email" value="{{old('email')}}">
-
-
-            @if ($errors->has('email'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('email') }}</strong>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="email" id="email" value="{{old('email')}}">
 
-            @endif
 
+                    @if ($errors->has('email'))
+
+                        <div class="help-block text-danger">
+                        <strong>{{ $errors->first('email') }}</strong>
+                        </div>
+
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Phone -->
 
         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-
-            <label class="control-label">Phone</label>
-
-
-            <input type="text" name="phone" id="phone" value="{{old('phone')}}">
-
-
-            @if ($errors->has('phone'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('phone') }}</strong>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Phone')}}</label>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="phone" id="phone" value="{{old('phone')}}">
+                    @if ($errors->has('phone'))
 
-            @endif
+                        <div class="help-block text-danger">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </div>
 
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Company -->
 
         <div class="form-group{{ $errors->has('company_id') ? ' has-error' : '' }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Company')}}</label>
+                </div>
+                <div class="col-md-8">
 
-            <label class="control-label">Company</label>
+                    <select class="form-control" id="company_id" name="company_id">
 
+                        <option value="">{{ __('Please Choose One')}}</option>
+                        @foreach($companies as $company)
+                            <option value="{{$company->id}}" @if ($real_company_id == $company->id) selected @endif>{{$company->name}}</option>
+                        @endforeach
 
-            <select class="form-control" id="company_id" name="company_id">
+                    </select>
+                    @if ($errors->has('company_id'))
 
-                <option value="">Please Choose One</option>
-                @foreach($companies as $company)
-                    <option value="{{$company->id}}">{{$company->name}}</option>
-                @endforeach
-
-            </select>
-
-
-            @if ($errors->has('company_id'))
-
-                <span class="help-block text-danger">
+                        <span class="help-block text-danger">
                 <strong>{{ $errors->first('company_id') }}</strong>
                 </span>
 
-            @endif
-
+                    @endif
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
-
-            <button type="submit" class="btn btn-primary btn-lg">
-                Create
-            </button>
-
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="submit" class="btn btn-primary btn-md">
+                        {{ __('Create')}}
+                    </button>
+                </div>
+            </div>
         </div>
 
-    </form>
+</form>
 
 @endsection
 

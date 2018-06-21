@@ -2,26 +2,26 @@
 
 @section('title')
 
-    <title>Companies</title>
+    <title>{{ __('Companies')}}</title>
 
 @endsection
 
 @section('content')
 
-    <h1 class="page-header">Companies</h1>
+    <h1 class="page-header">{{ __('Companies')}}</h1>
 
-    Create a new company: <a class="btn btn-success" href="{{route('company_create')}}">Create</a>
+    {{ __('Create a new company')}}: <a class="btn btn-success" href="{{route('company_create')}}">{{ __('Create')}}</a>
     @if($companies->count() > 0)
         <hr>
         <table class="table table-striped table-bordered table-hover table-condensed content-tbl">
 
             <thead>
-            <th>Logo</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Website</th>
-            <th>Date Created</th>
-            <th>Actions</th>
+            <th>{{ __('Logo')}}</th>
+            <th>{{ __('Name')}}</th>
+            <th>{{ __('Email')}}</th>
+            <th>{{ __('Website')}}</th>
+            <th>{{ __('Date Created')}}</th>
+            <th>{{ __('Actions')}}</th>
             </thead>
 
             <tbody>
@@ -34,7 +34,7 @@
                     <td>{{ $company->email }}</td>
                     <td>{{ $company->website }}</td>
                     <td>{{ $company->created_at }}</td>
-                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">Edit</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('All employees will also be deleted. Are you sure you want to delete?');">Remove</a></td>
+                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">{{ __('Edit')}}</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('{{ __('All employees will also be deleted. Are you sure you want to delete?')}}');">{{ __('Remove')}}</a><a href="{{route('employee_create',$company->id)}}" class="btn btn-info btn-sm">{{ __('Add Employee')}}</a></td>
                 </tr>
 
             @endforeach
@@ -44,7 +44,7 @@
         </table>
     @else
 
-        Sorry, no Companies
+        {{ __('Sorry, no Companies')}}
 
     @endif
 

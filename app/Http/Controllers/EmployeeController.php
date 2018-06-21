@@ -26,10 +26,17 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($company_id = null)
     {
+        $real_company_id = null;
         $companies = Company::all();
-        return view('employee.create', compact('companies'));
+        if (!empty($company_id)) {
+            $chosen_company = Company::where('id',$company_id)->first();
+            if (!empty($chosen_company)) {
+                $real_company_id = $company_id;
+            }
+        }
+        return view('employee.create', compact('companies','real_company_id'));
     }
 
     /**

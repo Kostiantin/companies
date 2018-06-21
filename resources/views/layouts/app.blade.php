@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="inner cover">
+            <div class="inner cover" id="app">
 
                 @yield('content')
 
@@ -56,7 +56,7 @@
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Companies Laravel 5.6 project by Konstantin Zavizion 2018.</p>
+                    <p>{{ __('Companies Laravel 5.6 project by Konstantin Zavizion 2018.')}}</p>
                 </div>
             </div>
 

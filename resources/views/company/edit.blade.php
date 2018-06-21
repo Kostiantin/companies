@@ -2,17 +2,17 @@
 
 @section('title')
 
-    <title>Edit Company</title>
+    <title>{{ __('Edit Company')}}</title>
 
 @endsection
 
 @section('content')
 
-    <h1 class="page-header">Edit Company</h1>
+    <h1 class="page-header">{{ __('Edit Company')}}</h1>
 
     <form class="form" role="form" method="POST"
           action="{{route('company_update', $company->id)}}"
-          enctype="multipart/form-data">
+          enctype="multipart/form-data" class="form-horizontal">
 
         {{ csrf_field() }}
 
@@ -22,39 +22,44 @@
 
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-            <label class="control-label">Name</label>
-
-            <input type="text" name="name" id="name" value="{{$company->name}}">
-
-
-            @if ($errors->has('name'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('name') }}</strong>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Name')}}</label>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="name" id="name" value="{{$company->name}}">
 
-            @endif
+                    @if ($errors->has('name'))
 
+                        <div class="help-block text-danger">
+                        <strong>{{ $errors->first('name') }}</strong>
+                        </div>
+
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Email -->
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-
-            <label class="control-label">Email</label>
-
-
-            <input type="text" name="email" id="email" value="{{$company->email}}">
-
-
-            @if ($errors->has('email'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('email') }}</strong>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Email')}}</label>
                 </div>
+                <div class="col-md-8">
 
-            @endif
+                    <input class="form-control" type="text" name="email" id="email" value="{{$company->email}}">
+
+                    @if ($errors->has('email'))
+
+                        <div class="help-block text-danger">
+                        <strong>{{ $errors->first('email') }}</strong>
+                        </div>
+
+                    @endif
+                </div>
+            </div>
 
         </div>
 
@@ -63,49 +68,60 @@
         <div class="form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
 
             <div class="form-group">
-                <label class="control-label">Company Logo</label>
-                <input type="file" name="logo" id="logo">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">{{ __('Company Logo')}}</label>
+                    </div>
+                    <div class="col-md-8">
+
+                        <input class="form-control" type="file" name="logo" id="logo">
+                        @if ($errors->has('logo'))
+
+                            <div class="help-block text-danger">
+                                <strong>{{ $errors->first('logo') }}</strong>
+                            </div>
+
+                        @endif
+                    </div>
+                </div>
             </div>
 
-            @if ($errors->has('logo'))
 
-                <div class="help-block text-danger">
-                    <strong>{{ $errors->first('logo') }}</strong>
-                </div>
-
-            @endif
 
         </div>
 
         <!-- Website -->
 
         <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
-
-            <label class="control-label">Website</label>
-
-
-            <input type="text" name="website" id="website" value="{{$company->website}}">
-
-
-            @if ($errors->has('website'))
-
-                <div class="help-block text-danger">
-                <strong>{{ $errors->first('website') }}</strong>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label">{{ __('Website')}}</label>
                 </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="website" id="website" value="{{$company->website}}">
 
-            @endif
+                    @if ($errors->has('website'))
 
+                        <div class="help-block text-danger">
+                        <strong>{{ $errors->first('website') }}</strong>
+                        </div>
+
+                    @endif
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
-
-            <button type="submit" class="btn btn-primary btn-lg">
-                Update
-            </button>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-md">
+                     {{ __('Update')}}
+                    </button>
+                </div>
+            </div>
         </div>
 
-    </form>
+</form>
 
 @endsection
 
