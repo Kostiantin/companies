@@ -18,8 +18,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 4) Run commands:  
      
-     php artisan config:cache;  
-     php artisan migrate --seed;  
+     composer install  
+     php artisan config:cache  
+     php artisan migrate --seed  
      
 5) Try to go to the site via browser.
 
