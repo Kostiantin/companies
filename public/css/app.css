@@ -10571,7 +10571,6 @@ body {
   .masthead {
     position: fixed;
     top: 0;
-
   }
 
   .mastfoot {
@@ -10594,17 +10593,16 @@ body {
     /* Must be percentage or pixels for horizontal alignment */
   }
 }
-@media (min-width: 1050px) {
+
+@media (min-width: 992px) {
   .masthead,
   .mastfoot,
   .cover-container {
-     width: 1050px;
+    width: 700px;
   }
 }
+
 .content-tbl td {
   vertical-align: middle;
 }
-.card {
-    color: #555;
-    text-shadow: none;
-}
+
