@@ -14,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 2) Install the local site and database;
 
-3) Assign database in the .env file;
+3) Change file .env.example to .env. Inside it assign database and connection credentials (user/password);
 
 4) Run commands:  
      
