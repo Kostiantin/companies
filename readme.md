@@ -15,16 +15,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 3) Assign database in the .env file;
 
-4) Run commands:
+4) Run commands:  
      
-     php artisan config:cache
-     php artisan migrate --seed
+     php artisan config:cache;  
+     php artisan migrate --seed;  
      
 5) Try to go to the site via browser.
 
 6) Login with credentials:
-     login: admin@admin.com
-     password: admin
+     login: admin@admin.com  
+     password: admin  
    to create, update, delete companies and employees  
 
 ## Authors
