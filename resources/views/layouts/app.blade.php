@@ -33,14 +33,25 @@
                     <h3 class="masthead-brand">{{ config('app.name', 'Laravel') }}</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="/">{{ __('Home') }}</a></li>
+                            <li @if ($controller == 'IndexController') class="active" @endif ><a href="/">{{ __('Home') }}</a></li>
                         @guest
-                            <li><a href="{{ route('login') }}">{{ __('Login')}}</a></li>
-                            <li><a href="{{ route('register') }}">{{ __('Register')}}</a></li>
+                            <li @if ($controller == 'LoginController') class="active" @endif ><a href="{{ route('login') }}">{{ __('Login')}}</a></li>
+                            <li @if ($controller == 'RegisterController') class="active" @endif ><a href="{{ route('register') }}">{{ __('Register')}}</a></li>
                         @else
-                            <li><a href="{{ route('companies') }}">{{ __('Companies')}}</a></li>
-                            <li><a href="{{ route('employees') }}">{{ __('Employees')}}</a></li>
-                            <li><a href="{{ route('logout') }}">{{ __('Log Out')}}</a></li>
+                            <li @if ($controller == 'CompanyController') class="active" @endif ><a href="{{ route('companies') }}">{{ __('Companies')}}</a></li>
+                            <li @if ($controller == 'EmployeeController') class="active" @endif ><a href="{{ route('employees') }}">{{ __('Employees')}}</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+
                         @endguest
                         </ul>
 

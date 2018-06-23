@@ -34,7 +34,11 @@
                     <td>{{ $company->email }}</td>
                     <td>{{ $company->website }}</td>
                     <td>{{ $company->created_at }}</td>
-                    <td><a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">{{ __('Edit')}}</a><a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('{{ __('All employees will also be deleted. Are you sure you want to delete?')}}');">{{ __('Remove')}}</a><a href="{{route('employee_create',$company->id)}}" class="btn btn-info btn-sm">{{ __('Add Employee')}}</a></td>
+                    <td>
+                        <a href="{{route('company_edit',$company->id)}}" class="btn btn-primary btn-sm">{{ __('Edit')}}</a>
+                        <a href="{{route('company_destroy',$company->id)}}" class="btn btn-danger btn-sm" onclick="return ConfirmDelete('{{ __('All employees will also be deleted. Are you sure you want to delete?')}}');">{{ __('Remove')}}</a>
+                        <a href="{{route('employee_create',$company->id)}}" class="btn btn-info btn-sm">{{ __('Add Employee')}}</a>
+                    </td>
                 </tr>
 
             @endforeach
