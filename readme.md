@@ -27,7 +27,7 @@ These instructions will get you a copy of the project up and running on your loc
      
 5) Try to go to the site via browser.
 
-6) Login with credentials:
+6) Login with credentials:  
      login: admin@admin.com  
      password: admin  
    to create, update, delete companies and employees  
