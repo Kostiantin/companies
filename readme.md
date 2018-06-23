@@ -22,6 +22,8 @@ These instructions will get you a copy of the project up and running on your loc
      php artisan key:generate  
      php artisan config:cache  
      php artisan migrate --seed  
+     npm install  
+     npm run dev  
      
 5) Try to go to the site via browser.
 
