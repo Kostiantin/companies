@@ -1,4 +1,4 @@
-# Project Title
+# Companies CRM based on Laravel 5.6
 
 Here you can find a simple Companies/Employees CRM based on Laravel 5.6. Please use it as boilerplate to start managing companies and their employees.
 When you installed the site and run mentioned artisan commands, you will have at once two companies, and each company will have one employee assigned.
