@@ -6,6 +6,7 @@ use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Employee;
+use App\Mail\Welcome;
 
 class CompanyController extends Controller
 {
@@ -66,6 +67,8 @@ class CompanyController extends Controller
         $Company->website = $request->input('website');
         $Company->logo = $fileNameToStore;
         $Company->save();
+
+        \Mail::to($Company->email)->send(new Welcome);
 
         return redirect()->route('companies');
     }

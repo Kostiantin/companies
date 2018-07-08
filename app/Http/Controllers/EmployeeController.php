@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Company;
+use App\Mail\Welcome;
 
 
 class EmployeeController extends Controller
@@ -55,14 +56,10 @@ class EmployeeController extends Controller
             'phone' => 'required',
         ]);
 
-        $Employee = new Employee;
-        $Employee->first_name = $request->input('first_name');
-        $Employee->last_name = $request->input('last_name');
-        $Employee->email = $request->input('email');
-        $Employee->company_id = $request->input('company_id');
-        $Employee->phone = $request->input('phone');
+        $Employee = Employee::create(request(['first_name','last_name', 'email', 'company_id', 'phone']));
 
-        $Employee->save();
+        \Mail::to($Employee->email)->send(new Welcome);
+
         return redirect()->route('employees');
     }
 
